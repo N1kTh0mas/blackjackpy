@@ -1,6 +1,11 @@
 import random
 import os
 
+#Blackjackpy by Nik Thomas
+#Created 08/2023
+#V1 Console Version
+
+#Name Lookup Dict for Console Output
 nameLookup = {
     1 : "Ace",
     11 : "Jack",
@@ -12,6 +17,7 @@ nameLookup = {
     23 : "Diamonds"
 }
 
+#Creates a newShoe (Inilization)
 def newShoe(deckAmt):
     file = open("blankShoe.txt","w")
     while deckAmt != 0:
@@ -25,12 +31,25 @@ def newShoe(deckAmt):
         deckAmt -= 1
     file.close()
 
+#Replaces current shoe (Shoe.txt) with a new shoe that is shuffled
 def replaceShoe():
-    pass
+    shoeFile = open("Shoe.txt","w")
+    shoeFile.write("")
+    blankShoeFile = open("blankShoe.txt","r")
+    blankShoeData = blankShoeFile.read()
+    for x in blankShoeData:
+        shoeFile.write(x)
+    shuffleShoe()
+    shoeFile.close()
+    blankShoeFile.close()
 
+
+
+#Shuffles Shoe.txt
 def shuffleShoe():
     pass
 
+#Prints a Shoe in console using Name Lookup (args: [str]filename)
 def printShoe(filename):
     file = open(filename, "r")
     rawData = file.read()
@@ -48,6 +67,7 @@ def printShoe(filename):
         printout += " of "
         printout += str(nameLookup[int(cardData[1])])
         print(printout)
+    file.close()
 
         
 
@@ -58,7 +78,8 @@ if Filetest == False:
     print("Shoe Created")
     newShoe(4)
 
-printShoe("blankShoe.txt")
+#printShoe("blankShoe.txt")
 
+replaceShoe()
 
 
