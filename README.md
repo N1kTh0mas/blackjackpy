@@ -1,0 +1,2 @@
+# blackjackpy
+Blackjack Python (WIP)
