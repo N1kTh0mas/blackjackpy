@@ -39,15 +39,45 @@ def replaceShoe():
     blankShoeData = blankShoeFile.read()
     for x in blankShoeData:
         shoeFile.write(x)
-    shuffleShoe()
     shoeFile.close()
     blankShoeFile.close()
+    shuffleShoe()
+    
 
 
 
 #Shuffles Shoe.txt
 def shuffleShoe():
-    pass
+    
+    #Makes a seed
+    s = 0
+    strSeed = ""
+    while s != 10:
+        temp = random.randint(0,9)
+        strSeed += str(temp)
+        s += 1
+    seed = int(strSeed)
+    random.seed(seed)
+    
+
+    #Shuffle Shoe
+    file = open("Shoe.txt", "r")
+    rawData = file.read()
+    cleanData = rawData.split()
+    file.close()
+    random.shuffle(cleanData)
+    random.shuffle(cleanData)
+    random.shuffle(cleanData)
+    
+    shuffledData = ""
+    file = open("Shoe.txt", "w")
+    for x in cleanData:
+        shuffledData += (x + " ")
+        
+    file.write(shuffledData)
+    file.close()
+
+
 
 #Prints a Shoe in console using Name Lookup (args: [str]filename)
 def printShoe(filename):
@@ -78,8 +108,9 @@ if Filetest == False:
     print("Shoe Created")
     newShoe(4)
 
-#printShoe("blankShoe.txt")
 
+#testing
 replaceShoe()
+printShoe("Shoe.txt")
 
 
